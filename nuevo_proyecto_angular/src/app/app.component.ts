@@ -9,5 +9,10 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'nuevo_proyecto_angular';
+  title:number = 20;
+  subtitle:number=2;
+
+  constructor(){
+
+  }
 }
