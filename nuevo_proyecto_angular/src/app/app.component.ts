@@ -13,6 +13,14 @@ export class AppComponent {
   subtitle:number=2;
 
   constructor(){
+    console.log("subtract: ", this.subtract(8,4))
+  }
 
+  public sum(num1:number, num2:number): number{
+    return num1+num2;
+  }
+
+  private subtract(num1:number, num2:number): number{
+    return num1-num2;
   }
 }
