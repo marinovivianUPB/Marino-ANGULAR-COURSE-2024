@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { UserCardComponent } from './user-card/user-card.component';
 
 interface IPerson{
   name:string,
@@ -10,7 +11,7 @@ interface IPerson{
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, UserCardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -29,16 +30,23 @@ export class AppComponent {
   students:number[] = [1,2,3,4,5,6]
   parents:number[] = [7,8,9]
 
+  var1=0
+  var2=null
+  var3='hola'
+
   constructor(){
 
     const {name, age} = this.person
-
     console.log("DESESTRUCTURACION: ", name,age)
 
     let both = [...this.students, ...this.parents]
     console.log('SPRED OPERATOR: ',both)
 
     console.log('REST OPERATOR: ', this.sum(2,4,6,5))
+
+    console.log('Nullish Coalesing: ', this.var2 ?? this.var3)
+
+    console.log('OR: ', this.var2 || this.var1) //se va a saltar al segundo si el primero es 0,null,undefned
 
     /*console.log("subtract: ", this.subtract(8,4))
     console.log("MAP:", this.animals.map((animal) => (animal +'new')))
