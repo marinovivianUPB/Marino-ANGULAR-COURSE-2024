@@ -13,7 +13,7 @@ interface IPerson{
   standalone: true,
   imports: [RouterOutlet, UserCardComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title:number = 20;
@@ -55,6 +55,10 @@ export class AppComponent {
     console.log("FILTER:", this.animals.filter((animal) => animal === 'c'))
     console.log("INDEXOF:", this.animals.indexOf('z'))*/
 
+  }
+
+  public receiveData(data:any){
+    console.log('Print in father component: ', data)
   }
 
   public sum(...persons:number[]){

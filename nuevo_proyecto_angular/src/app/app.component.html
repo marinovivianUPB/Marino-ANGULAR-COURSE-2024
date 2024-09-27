@@ -2,4 +2,4 @@
 <h1>Sum of Variable title and Variable subtitle: {{ title+subtitle }}</h1>
 <p>Sum: {{sum(2,4)}}</p>
 <p>Get Array, FOR: {{ getArray() }}</p>
-<user-card name="vivian" [email]="'marino6733784@gmail.com'"></user-card>
+<user-card name="vivian" [email]="'marino6733784@gmail.com'" (sendData)="receiveData($event)"></user-card>
