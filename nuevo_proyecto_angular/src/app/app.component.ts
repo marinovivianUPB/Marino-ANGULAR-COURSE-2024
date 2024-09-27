@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserCardComponent } from './user-card/user-card.component';
+import { CalculatorComponent } from './calculator/calculator.component';
+import { HistoryComponent } from './history/history.component';
 
 interface IPerson{
   name:string,
@@ -11,11 +13,13 @@ interface IPerson{
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, UserCardComponent],
+  imports: [RouterOutlet, UserCardComponent, CalculatorComponent, HistoryComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  result:number = 0;
+  history: { action: string, result: number }[] = [];
   title:number = 20;
   subtitle:number=2;
 
@@ -59,6 +63,14 @@ export class AppComponent {
 
   public receiveData(data:any){
     console.log('Print in father component: ', data)
+  }
+
+  public onResult(event:any){
+    this.result = event.result ?? 0;
+
+    if (event !== undefined) {
+      this.history.push({ action: event.action, result: event.result });
+    }
   }
 
   public sum(...persons:number[]){

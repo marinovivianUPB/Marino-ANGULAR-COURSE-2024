@@ -1,5 +1,17 @@
-
-<h1>Sum of Variable title and Variable subtitle: {{ title+subtitle }}</h1>
-<p>Sum: {{sum(2,4)}}</p>
+<h1>Sum of Variable title and Variable subtitle: {{ title + subtitle }}</h1>
+<p>Sum: {{ sum(2, 4) }}</p>
 <p>Get Array, FOR: {{ getArray() }}</p>
-<user-card name="vivian" [email]="'marino6733784@gmail.com'" (sendData)="receiveData($event)"></user-card>
+<user-card
+  name="vivian"
+  [email]="'marino6733784@gmail.com'"
+  (sendData)="receiveData($event)"
+></user-card>
+<p>RESULT: {{ result }}</p>
+<div class="container">
+  <div class="column">
+    <calculator (response)="onResult($event)"></calculator>
+  </div>
+  <div class="column">
+    <history [history]="history"></history>
+  </div>
+</div>
