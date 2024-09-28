@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { UserCardComponent } from './user-card/user-card.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { HistoryComponent } from './history/history.component';
+import { PersonComponent } from './person/person.component';
 
 interface IPerson{
   name:string,
@@ -14,7 +15,7 @@ interface IPerson{
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, UserCardComponent, CalculatorComponent, HistoryComponent, CommonModule],
+  imports: [RouterOutlet, UserCardComponent, CalculatorComponent, HistoryComponent, CommonModule, PersonComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -31,6 +32,11 @@ export class AppComponent {
     lastName:"perez",
     age:25
   }
+
+  females:number=0
+  males:number=0
+  discounts:number=0
+  persons:any[]=[{gender:0,name:"Marcela Valencia",age:23},{gender:1,name:"Aniceto Arce",age:12},{gender:0,name:"Luisa Armentia",age:43}]
 
   students:number[] = [1,2,3,4,5,6]
   parents:number[] = [7,8,9]
@@ -60,6 +66,19 @@ export class AppComponent {
     console.log("FILTER:", this.animals.filter((animal) => animal === 'c'))
     console.log("INDEXOF:", this.animals.indexOf('z'))*/
 
+    this.calculateTotals()
+
+  }
+
+  public calculateTotals() {
+    this.females = this.persons.filter(p => p.gender === 0).length;
+    this.males = this.persons.filter(p => p.gender === 1).length;
+    this.discounts = this.persons.filter(p => p.age > 18).length;
+  }
+
+  public deleteDiscounts() {
+    this.persons = this.persons.filter(p => p.age <= 18);
+    this.calculateTotals();
   }
 
   public receiveData(data:any){
