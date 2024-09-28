@@ -19,8 +19,31 @@
   </div>
 </div>
 
-<p *ngIf="1 === 1">Variables are equal</p>
+<p *ngIf="var1 === var2 else elseold">Variables are equal</p>
+<ng-template #elseold><p>old, result is false</p></ng-template>
 
-@if(1===1){
+@if(var1===var2){
   <p>New sintax, variables are equal</p>
+} @else{
+  <p>New sintax, result is false</p>
+}
+
+<p *ngFor="let item of students; let i=index">Student: {{item}} at index {{i}}</p>
+
+@for(item of students; track item; let i=$index){
+  <p>New Syntax Student: {{item}} at index {{i}}</p>
+}
+
+<div [ngSwitch]="var1">
+  <p *ngSwitchCase="0">var is 0</p>
+  <p *ngSwitchCase="1">var is 1</p>
+  <p *ngSwitchCase="2">var is 2</p>
+  <p *ngSwitchDefault>default</p>
+</div>
+
+@switch(var1){
+  @case(0){<p>new syntax: value is 0</p>}
+  @case(1){<p>new syntax: value is 1</p>}
+  @case(2){<p>new syntax: value is 2</p>}
+  @default{<p>new syntax: default</p>}
 }
