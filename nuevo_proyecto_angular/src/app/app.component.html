@@ -1,6 +1,10 @@
 <h1>Sum of Variable title and Variable subtitle: {{ title + subtitle }}</h1>
 <p>Sum: {{ sum(2, 4) }}</p>
 <p>Get Array, FOR: {{ getArray() }}</p>
+
+<button (click)="userCardCreated = !userCardCreated">Create and destroy user card</button>
+
+@if(userCardCreated){
 <user-card
   name="vivian"
   [email]="'marino6733784@gmail.com'"
@@ -9,6 +13,10 @@
 <p>HEllO from FATHER</p>
 <button>bUTTON FROM fATHER</button>
 </user-card>
+} @else{
+  <p>User card destroyed</p>
+}
+
 <p>RESULT: {{ result }}</p>
 <div class="container">
   <div class="column">

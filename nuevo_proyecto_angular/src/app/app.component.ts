@@ -45,6 +45,8 @@ export class AppComponent {
   var2=null
   var3='hola'
 
+  userCardCreated:boolean=true
+
   constructor(){
 
     const {name, age} = this.person

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'user-card',
@@ -8,7 +8,18 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss'
 })
-export class UserCardComponent {
+export class UserCardComponent implements OnInit, OnDestroy{
+
+  constructor(){
+    console.log("user card constructor")
+  }
+
+  ngOnDestroy(): void {
+    console.log("user card destroy");
+  }
+  ngOnInit(): void {
+    console.log("User card on init")
+  }
 
   @Input() name:string = ''
   @Input() email:string = ''
