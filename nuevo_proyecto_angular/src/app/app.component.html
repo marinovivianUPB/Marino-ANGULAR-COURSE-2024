@@ -3,11 +3,13 @@
 <p>Get Array, FOR: {{ getArray() }}</p>
 
 <button (click)="userCardCreated = !userCardCreated">Create and destroy user card</button>
+<button (click)="selectedUser=users[0]">change to user 0</button>
+<button (click)="selectedUser=users[1]">change to user 1</button>
 
 @if(userCardCreated){
 <user-card
-  name="vivian"
-  [email]="'marino6733784@gmail.com'"
+  [name]="selectedUser.name"
+  [email]="selectedUser.email"
   (sendData)="receiveData($event)"
 >
 <p>HEllO from FATHER</p>
