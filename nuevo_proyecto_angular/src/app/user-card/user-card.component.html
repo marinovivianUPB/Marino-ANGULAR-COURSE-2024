@@ -5,8 +5,11 @@
 
   <input type="text" [(ngModel)]="password">
 
-  <button #buttonTest (click)="onSendData()">Send Data</button>
+  <button #buttonShow (click) = "showButton = !showButton">Show send data</button>
 
+  @if(showButton){
+    <button #buttonTest (click)="onSendData()">Send Data</button>
+  }
 
   <p>PASSWORD: {{password}}</p>
 

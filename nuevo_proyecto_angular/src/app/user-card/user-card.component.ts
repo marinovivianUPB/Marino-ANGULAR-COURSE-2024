@@ -16,19 +16,22 @@ export class UserCardComponent implements OnInit, OnDestroy, OnChanges, DoCheck,
 
   @Output() sendData = new EventEmitter()
 
-  @ViewChild('buttonTest') buttonTest!:ElementRef //lo ponemos en false para que no haya problema si no esta, si esta en true se revisa q este
+  @ViewChild('buttonTest',{static: false} ) buttonTest!:ElementRef //lo ponemos en false para que no haya problema si no esta, si esta en true se revisa q este
+  @ViewChild('buttonShow',{static: true} ) buttonShow!:ElementRef 
 
   password:string=""
 
-  showButton:boolean= false
+  showButton:boolean= true
 
   constructor(){
     console.log("user card constructor")
   }
-  ngAfterViewInit(): void {
+  ngAfterViewInit(): void { //solamente ingresa una vez!!! nunca mas
     console.log("user card after view init");
     console.log("Native element", this.buttonTest)
-    this.buttonTest.nativeElement.textContent = "MODIFIED SEND DATA"
+    if(this.buttonTest){
+      this.buttonTest.nativeElement.textContent = "MODIFIED SEND DATA"
+    }
   }
   ngAfterContentInit(): void {
     console.log("user card after content init");
@@ -45,6 +48,10 @@ export class UserCardComponent implements OnInit, OnDestroy, OnChanges, DoCheck,
   }
   ngOnInit(): void {
     console.log("User card on init")
+
+    //this.buttonTest.nativeElement.textContent = "modified send data"
+
+    this.buttonShow.nativeElement.textContent = "button show"
     //this.password= this.name+this.email+"password"
   }
 
