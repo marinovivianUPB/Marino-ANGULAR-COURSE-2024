@@ -24,36 +24,36 @@ export class UserCardComponent implements OnInit, OnDestroy, OnChanges, DoCheck,
   showButton:boolean= true
 
   constructor(){
-    console.log("user card constructor")
+    //console.log("user card constructor")
   }
   ngAfterViewChecked(): void {
-    console.log("user card after view checked");
+    //console.log("user card after view checked");
   }
   ngAfterContentChecked(): void {
-    console.log("user card after content checked");
+    //console.log("user card after content checked");
   }
   ngAfterViewInit(): void { //solamente ingresa una vez!!! nunca mas
-    console.log("user card after view init");
+    /*console.log("user card after view init");
     console.log("Native element", this.buttonTest)
     if(this.buttonTest){
       this.buttonTest.nativeElement.textContent = "MODIFIED SEND DATA"
-    }
+    }*/
   }
   ngAfterContentInit(): void {
-    console.log("user card after content init");
+    //console.log("user card after content init");
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("user card chnaged");
+    /*console.log("user card chnaged");
     this.password= this.name+this.email+"password"
-    console.log(changes)
+    console.log(changes)*/
   }
 
   ngOnDestroy(): void {
-    console.log("user card destroy");
+    //console.log("user card destroy");
   }
   ngOnInit(): void {
-    console.log("User card on init")
+    //console.log("User card on init")
 
     //this.buttonTest.nativeElement.textContent = "modified send data"
 
@@ -62,7 +62,7 @@ export class UserCardComponent implements OnInit, OnDestroy, OnChanges, DoCheck,
   }
 
   ngDoCheck():void{
-    console.log("Do check user card")
+    //console.log("Do check user card")
   }
 
   public onSendData(){
