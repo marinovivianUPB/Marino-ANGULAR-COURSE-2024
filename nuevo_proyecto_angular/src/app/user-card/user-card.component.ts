@@ -44,9 +44,9 @@ export class UserCardComponent implements OnInit, OnDestroy, OnChanges, DoCheck,
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    /*console.log("user card chnaged");
+    /*console.log("user card chnaged");*/
     this.password= this.name+this.email+"password"
-    console.log(changes)*/
+    /*console.log(changes)*/
   }
 
   ngOnDestroy(): void {
@@ -58,7 +58,7 @@ export class UserCardComponent implements OnInit, OnDestroy, OnChanges, DoCheck,
     //this.buttonTest.nativeElement.textContent = "modified send data"
 
     this.buttonShow.nativeElement.textContent = "button show"
-    //this.password= this.name+this.email+"password"
+    this.password= this.name+this.email+"password"
   }
 
   ngDoCheck():void{
