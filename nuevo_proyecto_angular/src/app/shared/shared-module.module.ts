@@ -7,12 +7,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
-  declarations: [],
-  imports: [
-    AlertComponent,
+  declarations: [AlertComponent,
     CardComponent,
-    NavbarComponent,
+    NavbarComponent],
+  imports: [
     CommonModule
-  ]
+  ],
+  exports: [AlertComponent,CardComponent,NavbarComponent]
 })
-export class SharedModuleModule { }
+export class SharedModule { }
