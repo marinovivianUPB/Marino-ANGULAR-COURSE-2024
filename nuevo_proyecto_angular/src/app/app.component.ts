@@ -6,6 +6,7 @@ import { CalculatorComponent } from './calculator/calculator.component';
 import { HistoryComponent } from './history/history.component';
 import { PersonComponent } from './person/person.component';
 import { CounterComponent } from './counter/counter.component';
+import { filter, from, map, tap } from 'rxjs';
 
 interface IPerson{
   name:string,
@@ -46,6 +47,8 @@ export class AppComponent {
   var2=null
   var3='hola'
 
+  youtube = from([1,2,3,4,5,6,7])
+
   userCardCreated:boolean=true
   users=[{name:"abc", email:"algo@gmail.com"},{name:"hola", email:"otro@gmail.com"}]
   selectedUser:any=this.users[0]
@@ -73,6 +76,31 @@ export class AppComponent {
 
     this.calculateTotals()
 
+    this.youtube.subscribe((res) =>
+    {
+      console.log('YOUTUBE DATA: ', res)
+    }
+    )
+
+  }
+
+  addVideo(){
+    this.youtube.pipe(
+      map((res:number) =>{
+        //console.log('MAP OPERATOR RXJS: ',res)
+        if(res%2===0){
+          return res
+        } else{
+          return null
+        }
+      }),
+      tap((res:number |null) => {console.log('VALUE: ', res)}),
+      filter((res:number | null)=> res!==null)
+    ).subscribe(
+      (res) =>{
+        console.log('SUBSCRIBER 2: ', res)
+      }
+    )
   }
 
   public calculateTotals() {
