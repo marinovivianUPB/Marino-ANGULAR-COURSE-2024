@@ -1,4 +1,14 @@
-<div>
+<div class="container">
+  <div class="column">
 <search (sendData)="receiveSearchTerm($event)"></search>
 <list [list]="list" (sendData)="receiveData($event)"></list>
+</div>
+<div class="column">
+<div>
+  <button (click)="tab=1" [style.backgroundColor]="'cyan'">Personal</button>
+  <button (click)="tab=2" [style.backgroundColor]="'orange'">Geographic</button>
+  <button (click)="tab=3" [style.backgroundColor]="'yellow'">Messages</button>
+</div>
+<card [entry]="objectCard" [tab]="tab"></card>
+</div>
 </div>

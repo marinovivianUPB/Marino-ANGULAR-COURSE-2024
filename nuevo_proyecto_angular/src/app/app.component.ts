@@ -20,6 +20,7 @@ export class AppComponent implements OnInit{
   list:any[] = []
   originalList: any[] = [];
   objectCard:any = ''
+  tab:number =1
   
   ngOnInit(): void {
     this.list=Object.entries(data);
@@ -41,11 +42,11 @@ export class AppComponent implements OnInit{
     console.log("got search term")
     if (data) {
       this.list = this.list.filter(entry => {
-        const fullName = `${entry[1].name} ${entry[1].lastName}`.toLowerCase();  // Concatenate name and lastName
-        return fullName.includes(data.toLowerCase());  // Case-insensitive search
+        const fullName = `${entry[1].name} ${entry[1].lastName}`.toLowerCase();
+        return fullName.includes(data.toLowerCase());
       });
     } else {
-      this.list = [...this.originalList];  // Reset the list if the search term is empty
+      this.list = [...this.originalList];
     }
   }
 }
