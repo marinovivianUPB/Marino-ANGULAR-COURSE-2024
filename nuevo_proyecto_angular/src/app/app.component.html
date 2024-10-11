@@ -21,6 +21,10 @@
 
 <button (click)="addVideo()">ADD NEW VIDEO TO YOUTUBE</button>
 
+<div [ngColors]="'green'" [defaultColor]="'pink'" (colorChange)="getColor($event)" (colorChangeDouble)="getColor($event)">
+  MY CUSTOM ATTRIBUTE DIRECTIVE
+</div>
+
 <!-- <p>RESULT: {{ result }}</p>
 <div class="container">
   <div class="column">
