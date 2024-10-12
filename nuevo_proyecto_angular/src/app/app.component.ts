@@ -9,6 +9,8 @@ import { CounterComponent } from './counter/counter.component';
 import { filter, from, map, tap } from 'rxjs';
 import { AppColorsDirective } from './app-colors.directive';
 import { CreateHtmlDirective } from './create-html.directive';
+import { PurePipe } from './pure.pipe';
+import { ImpurePipe } from './impure.pipe';
 
 interface IPerson{
   name:string,
@@ -19,7 +21,9 @@ interface IPerson{
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, UserCardComponent, CalculatorComponent, HistoryComponent, CommonModule, PersonComponent, CounterComponent, AppColorsDirective, CreateHtmlDirective],
+  imports: [RouterOutlet, UserCardComponent, CalculatorComponent, HistoryComponent, CommonModule, PersonComponent, CounterComponent, AppColorsDirective, CreateHtmlDirective
+    ,PurePipe, ImpurePipe
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -42,7 +46,7 @@ export class AppComponent {
   discounts:number=0
   persons:any[]=[{gender:0,name:"Marcela Valencia",age:23},{gender:1,name:"Aniceto Arce",age:12},{gender:0,name:"Luisa Armentia",age:43}]
 
-  students:number[] = [1,2,3,4,5,6]
+  students:number[] = [1,2,3,4,5,6,7,8,9]
   parents:number[] = [7,8,9]
 
   var1=0
@@ -84,6 +88,10 @@ export class AppComponent {
     }
     )
 
+  }
+
+  public addNumber(){
+    this.students = [...this.students,10]
   }
 
   addVideo(){
