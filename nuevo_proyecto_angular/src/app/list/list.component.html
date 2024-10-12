@@ -1,3 +1,5 @@
+<div [style.backgroundColor]="'#FFD580'" [style.padding]="'10px'">
 <div *ngFor="let entry of list">
     <item [object]="entry[1]" [object_key]="entry[0]" [type]="1" (sendData)="sendPersonToParent($event)"></item>
+</div>
 </div>

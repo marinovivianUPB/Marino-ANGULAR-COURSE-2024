@@ -1,16 +1,20 @@
-<div [style.backgroundColor]="tab === 1 ? 'cyan' : (tab === 2 ? 'orange' : 'yellow')" [style.padding]="'20px'">
+<div [style.backgroundColor]="tab === 1 ? '#ADD8E6' : (tab === 2 ? '#f7874f' : '#FFD580')" [style.padding]="'20px'" [style.height]="'400px'"
+    [style.overflowY]="'auto'">
     @switch(tab){
         @case(1){
             <div>
+                <h2>Personal</h2>
                 <p><strong>Name:</strong> {{entry[1].name}} {{entry[1].lastName}}</p>
                 <p><strong>Type:</strong> {{entry[1].type}}</p>
+                @if(entry[1].type==='student'){
                 <p><strong>Average Score:</strong> {{(entry[1].firstTestScore + entry[1].secondTestScore + entry[1].finalTestScore) / 3}}</p>
+                }
             </div>
         }
         @case(2){
             <div>
-                <p><strong>Address:</strong></p>
-                <p>{{entry[1].address.number}}, {{entry[1].address.street}}, {{entry[1].address.zone}}</p>
+                <h2>Geographic</h2>
+                <p><strong>Address:</strong> {{entry[1].address.number}}, {{entry[1].address.street}}, {{entry[1].address.zone}}</p>
                 <p><strong>Country:</strong> {{entry[1].country}}</p>
                 <p><strong>Province:</strong> {{entry[1].province}}</p>
               </div>

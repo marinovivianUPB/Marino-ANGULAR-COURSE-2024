@@ -1,13 +1,15 @@
-<div [style.backgroundColor]="type === 0 ? 'white' : (object.type === 'student' ? 'cyan' : 'orange')">
+<div [style.backgroundColor]="type === 0 ? 'white' : (object.type === 'student' ? '#ADD8E6' : '#f7874f')" [style.margin]="'20px'">
     <ng-container *ngIf="type === 0; else elseBlock">
-        <p>{{ object}}</p>
+        <p [style.padding]="'20px'">{{ object}}</p>
       </ng-container>
       
       <ng-template #elseBlock>
-        <div class="container">
+        <div class="container" [style.gap]="'20px'">
           <p>{{ object.name }} {{ object.lastName }} - {{ object.type }}</p>
+          <div [style.display]="'flex'" [style.gap]="'10px'">
           <button (click)="sendPersonToParent(0)">Show</button>
           <button (click)="sendPersonToParent(1)">Delete</button>
+          </div>
         </div>
       </ng-template>
 </div>

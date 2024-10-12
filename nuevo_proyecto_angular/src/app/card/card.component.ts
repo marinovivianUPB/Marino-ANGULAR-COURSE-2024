@@ -27,7 +27,7 @@ export class CardComponent implements OnChanges {
   public receiveSearchTerm(data:string){
     console.log("got search term")
     if (data) {
-      this.messagesList = this.messagesList.filter(entry => entry.includes(data));
+      this.messagesList = this.messagesList.filter(entry => entry.toLowerCase().includes(data));
     } else {
       this.messagesList = [...this.originalList];
     }
