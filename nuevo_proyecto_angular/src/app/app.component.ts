@@ -12,6 +12,10 @@ import { CreateHtmlDirective } from './create-html.directive';
 import { PurePipe } from './pure.pipe';
 import { ImpurePipe } from './impure.pipe';
 
+import {ChangeDetectionStrategy} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+
 interface IPerson{
   name:string,
   lastName:string,
@@ -22,10 +26,11 @@ interface IPerson{
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, UserCardComponent, CalculatorComponent, HistoryComponent, CommonModule, PersonComponent, CounterComponent, AppColorsDirective, CreateHtmlDirective
-    ,PurePipe, ImpurePipe
+    ,PurePipe, ImpurePipe, MatButtonModule, MatCardModule
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   result:number = 0;
