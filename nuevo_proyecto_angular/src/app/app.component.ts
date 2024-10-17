@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Event, RouterOutlet } from '@angular/router';
+import { Event, RouterLink, RouterOutlet } from '@angular/router';
 import { UserCardComponent } from './user-card/user-card.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { HistoryComponent } from './history/history.component';
@@ -26,7 +26,7 @@ interface IPerson{
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, UserCardComponent, CalculatorComponent, HistoryComponent, CommonModule, PersonComponent, CounterComponent, AppColorsDirective, CreateHtmlDirective
-    ,PurePipe, ImpurePipe, MatButtonModule, MatCardModule
+    ,PurePipe, ImpurePipe, MatButtonModule, MatCardModule, RouterLink
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
