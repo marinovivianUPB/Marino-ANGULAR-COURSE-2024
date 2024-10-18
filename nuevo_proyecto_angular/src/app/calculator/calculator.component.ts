@@ -5,7 +5,20 @@ import { FormsModule } from '@angular/forms';
   selector: 'calculator',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './calculator.component.html',
+  //templateUrl: './calculator.component.html',
+  template: `
+  <div class="calculator">
+  <p>Calculator</p>
+  <input type="text" [(ngModel)]="box1Value" />
+  <input type="text" [(ngModel)]="box2Value" />
+  <div class="button-container">
+    <button class="sum" (click)="onAction(1)">Sum</button>
+    <button class="mul" (click)="onAction(2)">Mul</button>
+    <button class="reset" (click)="onAction(3)">Reset</button>
+  </div>
+  <p>box1Value: {{ box1Value }}</p>
+  <p>box2Value: {{ box2Value }}</p>
+</div>`,
   styleUrl: './calculator.component.scss'
 })
 export class CalculatorComponent {
