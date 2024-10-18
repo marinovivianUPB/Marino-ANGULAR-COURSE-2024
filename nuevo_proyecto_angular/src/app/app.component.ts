@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Event, RouterLink, RouterOutlet } from '@angular/router';
+import { Event, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserCardComponent } from './user-card/user-card.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { HistoryComponent } from './history/history.component';
@@ -64,7 +64,7 @@ export class AppComponent {
   users=[{name:"abc", email:"algo@gmail.com"},{name:"hola", email:"otro@gmail.com"}]
   selectedUser:any=this.users[0]
 
-  constructor(){
+  constructor(private router: Router){
 
     const {name, age} = this.person
     console.log("DESESTRUCTURACION: ", name,age)
@@ -165,6 +165,10 @@ export class AppComponent {
 
   public getColor(data:any){
     console.log(data)
+  }
+
+  public goToStudent(){
+    this.router.navigate(['student'])
   }
 
 

@@ -2,6 +2,8 @@ import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'user-card',
@@ -24,7 +26,21 @@ export class UserCardComponent implements OnInit, OnDestroy, OnChanges, DoCheck,
 
   showButton:boolean= true
 
-  constructor(){
+  subscription: Subscription = new Subscription()
+
+  constructor(private activateRouter: ActivatedRoute){
+
+    this.subscription.add(
+
+      this.activateRouter.params.subscribe((params) => {
+        console.log("PARAMS:", params)
+      })
+
+    )
+
+    
+
+    console.log("SNAPSHOT:", this.activateRouter.snapshot.params)
     //console.log("user card constructor")
   }
   ngAfterViewChecked(): void {
@@ -51,6 +67,8 @@ export class UserCardComponent implements OnInit, OnDestroy, OnChanges, DoCheck,
   }
 
   ngOnDestroy(): void {
+
+    this.subscription.unsubscribe()
     //console.log("user card destroy");
   }
   ngOnInit(): void {
