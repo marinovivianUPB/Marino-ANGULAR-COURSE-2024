@@ -16,9 +16,15 @@ export class AppComponent implements OnInit{
   
   title = 'nuevo_proyecto_angular';
   userList:any[] = []
+  newMedia: { platform: string, message: string } | null = null; 
 
   ngOnInit(): void {
     this.userList=Object.entries(data);
     console.log(this.userList);
+  }
+
+  handleNewMediaAdded(media: { platform: string, message: string }) {
+    this.newMedia = media;
+    console.log('New media added:', media);
   }
 }

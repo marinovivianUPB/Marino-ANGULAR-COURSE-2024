@@ -1,16 +1,20 @@
 import { socialNetworks } from './../../data';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { NotificationsComponent } from '../notifications/notifications.component';
 
 @Component({
   selector: 'user-data',
   templateUrl: './user-data.component.html',
   styleUrl: './user-data.component.css'
 })
-export class UserDataComponent implements OnInit {
+export class UserDataComponent implements OnInit, OnChanges {
 
   @Input() user: any = {};
+  @Input() newMedia:any ={}
   activate:boolean=true
+
+  @ViewChild(NotificationsComponent) notificationsComponent!: NotificationsComponent;
 
   subscription: Subscription = new Subscription()
   socialNetworks:any[] = []
@@ -21,6 +25,15 @@ export class UserDataComponent implements OnInit {
     this.socialNetworks=Object.entries(socialNetworks);
     this.availableSocialNetworks=this.socialNetworks
     console.log(this.socialNetworks);
+    if (this.newMedia) {
+      this.addNotification(this.newMedia.platform, this.newMedia.message);
+    }
+  }
+
+  ngOnChanges() {
+    if (this.newMedia) {
+      this.addNotification(this.newMedia.platform, this.newMedia.message);
+    }
   }
   public addSocialMedia(code:number){
     let socialMedia = this.socialNetworks.find((entry:any) => entry[0] == code)
@@ -32,6 +45,16 @@ export class UserDataComponent implements OnInit {
     let socialMedia = this.socialNetworks.find((entry:any) => entry[0] == code)
     this.availableSocialNetworks.push(socialMedia)
     this.subscribedSocialNetworks=this.subscribedSocialNetworks.filter((entry:any) => entry[0] != code)
+  }
+
+  addNotification(platform: string, message: string) {
+    let subs = this.subscribedSocialNetworks.find((entry: any) => entry[1].platform == platform);
+    if( subs.length > 0){
+      console.log('Notification received');
+      this.notificationsComponent.addNotification(
+        { platform: platform, type: message }
+      );
+    }
   }
 
   public closeAccount(){

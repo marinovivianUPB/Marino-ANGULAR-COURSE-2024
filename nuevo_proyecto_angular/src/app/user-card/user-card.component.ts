@@ -12,5 +12,6 @@ export class UserCardComponent {
 
   @Input() user: any = {};
   @Input() tab:number=1;
+  @Input() newMedia:any ={};
 
 }

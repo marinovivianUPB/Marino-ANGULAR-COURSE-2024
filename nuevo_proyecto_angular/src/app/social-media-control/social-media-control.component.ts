@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { socialNetworks } from './../data';
 
@@ -11,6 +11,8 @@ import { socialNetworks } from './../data';
 })
 export class SocialMediaControlComponent {
   platforms = socialNetworks;  
+
+  @Output() newMediaAdded = new EventEmitter<{ platform: string, message: string }>();
 
   platformColors: { [key: string]: string } = {
     youtube: 'red',
@@ -25,14 +27,10 @@ export class SocialMediaControlComponent {
   }
 
   addNewMedia(platform: string) {
-    if(platform === 'instagram') {
-      console.log(`Adding a new story to ${platform}`);
-    } else if (platform === 'whatsapp') {
-      console.log(`Adding a new message to ${platform}`);
-    } else if (platform === 'tiktok' || platform === 'youtube') {
-      console.log(`Adding a new video to ${platform}`);
-    }  else if (platform === 'facebook') {
-      console.log(`Adding a new story to ${platform}`);
-    }
+    let mediaType = platform === 'youtube' || platform === 'tiktok' ? 'video' : 'story';
+    console.log(`Adding a new ${mediaType} to ${platform}`);
+    let message = `Adding a new ${mediaType} to ${platform}`
+
+    this.newMediaAdded.emit({ platform: platform, message: message });
   }
 }
