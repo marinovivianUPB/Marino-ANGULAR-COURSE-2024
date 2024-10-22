@@ -1,0 +1,11 @@
+<div class="p-20 border-black outline-2 rounded-xl">
+        @if(added){
+            <button (click)="sendCodeToParent(0)">x</button>
+        }
+        @else{
+            <button (click)="sendCodeToParent(1)">+</button>
+        }
+    <div class="flex flex-row items-center justify-center w-full">
+        {{ name }}
+    </div>
+</div>

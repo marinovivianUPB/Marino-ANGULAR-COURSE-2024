@@ -1,1 +1,13 @@
-<p>social-media-control works!</p>
+<div class="flex flex-row">
+    <div *ngFor="let platform of platforms" 
+         [ngStyle]="{'background-color': getPlatformColor(platform.platform)}" 
+         class="flex flex-col items-center justify-center">
+      <div *ngIf="platform.platformType === 'premium'">
+        ★
+      </div>
+  
+      <p>{{ platform.platform | titlecase }}</p>
+      
+      <button (click)="addNewMedia(platform.platform)">Add a new {{ platform.type }}</button>
+    </div>
+  </div>

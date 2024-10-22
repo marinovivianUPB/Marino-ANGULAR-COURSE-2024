@@ -1,1 +1,19 @@
-<p>user-data works!</p>
+<div>
+    <p><strong>Name:</strong> {{ user[1].name }}</p>
+    <p><strong>Age:</strong> {{ user[1].age }}</p>
+    <p><strong>Status:</strong> {{ user[1].status }}</p>
+    <p><strong>Subscription Type:</strong> {{ user[1].subscriptionType }}</p>
+    <p><strong>Amount Available:</strong> {{ user[1].amountAvailable }}</p>
+</div>
+<div>
+    Social Networks
+    <div class="flex flex-row flex-wrap">
+    <social-media-card *ngFor="let entry of availableSocialNetworks" [code]="entry[0]" [name]="entry[1].platform" [added]="false" (sendData)="receiveData($event)"></social-media-card>
+    </div>
+</div>
+<div>
+    Subscriptions
+    <div class="flex flex-row flex-wrap">
+    <social-media-card *ngFor="let entry of subscribedSocialNetworks" [code]="entry[0]"[name]="entry[1].platform" [added]="true" (sendData)="receiveData($event)"></social-media-card>
+    </div>
+</div>

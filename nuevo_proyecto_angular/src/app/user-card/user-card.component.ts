@@ -1,13 +1,16 @@
 import { UserRelatedModule } from '../user-related/user-related.module';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-user-card',
+  selector: 'user-card',
   standalone: true,
   imports: [UserRelatedModule],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.css'
 })
 export class UserCardComponent {
+
+  @Input() user: any = {};
+  @Input() tab:number=1;
 
 }
