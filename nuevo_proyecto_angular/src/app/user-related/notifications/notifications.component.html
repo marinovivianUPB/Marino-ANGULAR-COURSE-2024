@@ -1,1 +1,6 @@
-<p>notifications works!</p>
+<div>
+    <h3>Notifications</h3>
+    <div *ngFor="let notification of notifications">
+      <p>New {{ notification.type }} added on {{ notification.platform }}</p>
+    </div>
+  </div>

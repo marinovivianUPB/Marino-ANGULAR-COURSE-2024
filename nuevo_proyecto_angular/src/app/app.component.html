@@ -1,4 +1,4 @@
-<social-media-control></social-media-control>
+<social-media-control (newMediaAdded)="handleNewMediaAdded($event)"></social-media-control>
 
 <div  class="flex flex-row flex-wrap">
 <div class="flex flex-row flex-wrap m-20" *ngFor="let entry of userList">
