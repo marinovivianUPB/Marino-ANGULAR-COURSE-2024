@@ -16,7 +16,7 @@ import {ChangeDetectionStrategy} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { query } from '@angular/animations';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 interface IPerson{
   name:string,
@@ -28,7 +28,7 @@ interface IPerson{
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, UserCardComponent, CalculatorComponent, HistoryComponent, CommonModule, PersonComponent, CounterComponent, AppColorsDirective, CreateHtmlDirective
-    ,PurePipe, ImpurePipe, MatButtonModule, MatCardModule, RouterLink, FormsModule
+    ,PurePipe, ImpurePipe, MatButtonModule, MatCardModule, RouterLink, FormsModule, ReactiveFormsModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -69,6 +69,8 @@ export class AppComponent {
   name:string=''
   lastName:string=''
 
+  scoreControl = new FormControl<string>('', [Validators.required])
+
   constructor(private router: Router){
 
     const {name, age} = this.person
@@ -97,6 +99,10 @@ export class AppComponent {
       console.log('YOUTUBE DATA: ', res)
     }
     )
+
+    this.scoreControl.valueChanges.subscribe((res) =>{
+      console.log('SCORE VALUE OBSERVABLE: ', res)
+    })
 
   }
 
@@ -182,6 +188,10 @@ export class AppComponent {
 
   public onSubmit(data:any){
     console.log("DATA: ",data)
+  }
+
+  onPrintScore(){
+    console.log("PRINT SCORE", this.scoreControl.value)
   }
 
 }
