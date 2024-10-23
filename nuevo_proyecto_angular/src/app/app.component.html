@@ -150,7 +150,8 @@
 
 <button type="button" class="btn btn-light" [routerLink]="['card',8]">User Card 8</button>
 <button type="button" class="btn btn-light" [routerLink]="['card',1]">User Card 1</button>
-<button type="button" class="btn btn-dark" [routerLink]="'/calc'">Calculator</button>
+<button type="button" class="btn btn-dark" [routerLink]="'/calc'" [queryParams]="{name: 'test', lastName: 'Perez'}">Calculator</button>
+<button type="button" class="btn btn-dark" (click)="goToCalc()">Calculator from ts</button>
 <button type="button" class="btn btn-warning" [routerLink]="'/counter'">Counter</button>
 <button type="button" class="btn btn-warning" [routerLink]="'/student'">Student</button>
 <button type="button" class="btn btn-warning" [routerLink]="'/student/classmate'">Classmate</button>

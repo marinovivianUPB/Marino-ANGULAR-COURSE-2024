@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'calculator',
@@ -21,11 +22,20 @@ import { FormsModule } from '@angular/forms';
 </div>`,
   styleUrl: './calculator.component.scss'
 })
-export class CalculatorComponent {
+export class CalculatorComponent implements OnInit{
+
   box1Value:number=0
   box2Value:number=0
 
   @Output() response = new EventEmitter()
+
+  constructor (private _activatedRoute: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this._activatedRoute.queryParams.subscribe((params) => {
+        console.log("Query params: ",params)
+    })
+  }
 
   public onAction(action:number){
     switch(action){

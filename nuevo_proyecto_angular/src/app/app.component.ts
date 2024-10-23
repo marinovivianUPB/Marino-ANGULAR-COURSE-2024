@@ -15,6 +15,7 @@ import { ImpurePipe } from './impure.pipe';
 import {ChangeDetectionStrategy} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import { query } from '@angular/animations';
 
 interface IPerson{
   name:string,
@@ -169,6 +170,10 @@ export class AppComponent {
 
   public goToStudent(){
     this.router.navigate(['student'])
+  }
+
+  public goToCalc(){
+    this.router.navigate(['calc'], {queryParams: {name: 'test', lastName: 'Perez'}})
   }
 
 
