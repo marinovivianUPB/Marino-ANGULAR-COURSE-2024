@@ -16,6 +16,7 @@ import {ChangeDetectionStrategy} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { query } from '@angular/animations';
+import { FormsModule } from '@angular/forms';
 
 interface IPerson{
   name:string,
@@ -27,7 +28,7 @@ interface IPerson{
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, UserCardComponent, CalculatorComponent, HistoryComponent, CommonModule, PersonComponent, CounterComponent, AppColorsDirective, CreateHtmlDirective
-    ,PurePipe, ImpurePipe, MatButtonModule, MatCardModule, RouterLink
+    ,PurePipe, ImpurePipe, MatButtonModule, MatCardModule, RouterLink, FormsModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -64,6 +65,9 @@ export class AppComponent {
   userCardCreated:boolean=true
   users=[{name:"abc", email:"algo@gmail.com"},{name:"hola", email:"otro@gmail.com"}]
   selectedUser:any=this.users[0]
+
+  name:string=''
+  lastName:string=''
 
   constructor(private router: Router){
 
@@ -176,5 +180,8 @@ export class AppComponent {
     this.router.navigate(['calc'], {queryParams: {name: 'test', lastName: 'Perez'}})
   }
 
+  public onSubmit(data:any){
+    console.log("DATA: ",data)
+  }
 
 }

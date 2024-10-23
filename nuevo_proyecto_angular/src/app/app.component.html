@@ -115,6 +115,20 @@
       A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
       bred for hunting.
     </p>
+    <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
+    <p>Name</p>
+    <input type="text" ngModel name="nameF">
+    <p>lAST Name</p>
+    <input type="text" ngModel name="lastNameF">
+    <p>City</p>
+    <input type="text" ngModel name="cityF">
+    <p>Age</p>
+    <input type="text" ngModel name="ageF">
+    <p>Phone</p>
+    <input type="text" ngModel name="phoneF">
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+    </form>
   </mat-card-content>
   <mat-card-actions>
     <button mat-button>LIKE</button>
