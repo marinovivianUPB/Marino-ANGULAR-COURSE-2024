@@ -15,13 +15,20 @@ import { ImpurePipe } from './impure.pipe';
 import {ChangeDetectionStrategy} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
-import { query } from '@angular/animations';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 interface IPerson{
   name:string,
   lastName:string,
   age?:number
+}
+
+interface IForm{
+  name:string,
+  score:string,
+  school:string,
+  university:string,
+  professor:string,
 }
 
 @Component({
@@ -34,6 +41,7 @@ interface IPerson{
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class AppComponent {
   result:number = 0;
   history: { action: string, result: number }[] = [];
@@ -72,8 +80,9 @@ export class AppComponent {
   scoreControl = new FormControl<string>('', [Validators.required])
 
   studentForm !: FormGroup;
+  studentForm2 !: UntypedFormGroup;
 
-  constructor(private router: Router, private formBuilder: FormBuilder){
+  constructor(private router: Router, private formBuilder: FormBuilder, private untypedFormBuilder: UntypedFormBuilder){
 
     const {name, age} = this.person
     console.log("DESESTRUCTURACION: ", name,age)
@@ -113,6 +122,22 @@ export class AppComponent {
       school: new FormControl('', [Validators.required]),
       university: new FormControl('', [Validators.required]),
     })
+
+    this.studentForm2 = this.untypedFormBuilder.group({
+      name: ['', [Validators.required]], //para hacerlo asi se necesita el form builder
+      score: [''],
+      professor: new FormControl('', [Validators.required]),
+      school: new FormControl('', [Validators.required]),
+      university: new FormControl('', [Validators.required]),
+    })
+
+    /*this.studentForm = new FormGroup ({
+      name: new FormControl<string>('', [Validators.required]),
+      score: new FormControl<string>('', [Validators.required]),
+      professor: new FormControl<string>('', [Validators.required]),
+      school: new FormControl<string>('', [Validators.required]),
+      university: new FormControl<string>('', [Validators.required]),
+    })*/
 
     this.studentForm.valueChanges.subscribe(
       (res) => {
