@@ -16,7 +16,7 @@ import {ChangeDetectionStrategy} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { query } from '@angular/animations';
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 interface IPerson{
   name:string,
@@ -71,7 +71,9 @@ export class AppComponent {
 
   scoreControl = new FormControl<string>('', [Validators.required])
 
-  constructor(private router: Router){
+  studentForm !: FormGroup;
+
+  constructor(private router: Router, private formBuilder: FormBuilder){
 
     const {name, age} = this.person
     console.log("DESESTRUCTURACION: ", name,age)
@@ -103,7 +105,20 @@ export class AppComponent {
     this.scoreControl.valueChanges.subscribe((res) =>{
       console.log('SCORE VALUE OBSERVABLE: ', res)
     })
+    
+    this.studentForm = this.formBuilder.group({
+      name: ['', [Validators.required]], //para hacerlo asi se necesita el form builder
+      score: [''],
+      professor: new FormControl('', [Validators.required]),
+      school: new FormControl('', [Validators.required]),
+      university: new FormControl('', [Validators.required]),
+    })
 
+    this.studentForm.valueChanges.subscribe(
+      (res) => {
+        console.log('FORM VALUE OBSERVABLE: ', res)
+      }
+    )
   }
 
   public addNumber(){
@@ -192,6 +207,10 @@ export class AppComponent {
 
   onPrintScore(){
     console.log("PRINT SCORE", this.scoreControl.value)
+  }
+
+  onSendData(){
+    console.log('FORM GROUP: ', this.studentForm)
   }
 
 }

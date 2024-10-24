@@ -132,6 +132,21 @@
     <p>Reactive Form</p>
     <input type="text" [formControl]="scoreControl">
     <button type="button" (click)="onPrintScore()">PRINT SCORE</button>
+
+    <form [formGroup]="studentForm">
+      <p>Name</p>
+    <input type="text" [formControlName]="'name'">
+    <p>Score</p>
+    <input type="text" [formControlName]="'score'">
+    <p>Professor</p>
+    <input type="text" [formControlName]="'professor'">
+    <p>School</p>
+    <input type="text" [formControlName]="'school'">
+    <p>University</p>
+    <input type="text" [formControlName]="'university'">
+    </form>
+    <button (click)="onSendData()">SEND DATA</button>
+
     </form>
   </mat-card-content>
   <mat-card-actions>
