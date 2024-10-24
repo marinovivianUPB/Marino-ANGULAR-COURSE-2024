@@ -145,7 +145,7 @@
     <p>University</p>
     <input type="text" [formControlName]="'university'">
     </form>
-    <button (click)="onSendData()">SEND DATA</button>
+    <button (click)="onSendData()"  [disabled]="studentForm.invalid">SEND DATA</button>
 
     </form>
   </mat-card-content>
