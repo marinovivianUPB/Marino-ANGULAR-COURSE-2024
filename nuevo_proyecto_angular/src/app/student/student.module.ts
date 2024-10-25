@@ -6,11 +6,12 @@ import { ScoreComponent } from './score/score.component';
 import { ClassmateComponent } from './classmate/classmate.component';
 import { RouterLink } from '@angular/router';
 import { AverageComponent } from './average/average.component';
-import { AuthService } from '../auth.service';
+import { ExamService } from './exam.service';
 
 
 @NgModule({
   declarations: [ScoreComponent, ClassmateComponent, AverageComponent],
+  providers: [ExamService],
   imports: [
     CommonModule,
     StudentRoutingModule, RouterLink
