@@ -1,4 +1,4 @@
-<div class="p-20 border-black outline-2 rounded-xl">
+<div class="p-3 border-black outline-2 rounded-xl" [ngStyle]="{'background-color': getPlatformColor(name)}">
         @if(added){
             <button (click)="sendCodeToParent(0)">x</button>
         }

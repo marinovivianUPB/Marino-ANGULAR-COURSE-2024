@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'notifications',
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './notifications.component.css'
 })
 export class NotificationsComponent {
-  notifications: { platform: string, type: string }[] = [];
+  @Input()notifications: { platform: string, type: string }[] = [];
 
   addNotification(notification: { platform: string, type: string }) {
     this.notifications.push(notification);

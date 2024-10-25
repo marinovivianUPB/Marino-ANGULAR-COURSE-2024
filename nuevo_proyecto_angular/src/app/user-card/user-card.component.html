@@ -5,10 +5,12 @@
 <div class="border-black border-2 p-5">
     @switch(tab){
         @case(1){
-            <user-data [user]="user" [newMedia]="newMedia"></user-data>
+            <user-data [user]="user" [newMedia]="newMedia" (sendData)="handleNotification($event)" [availableSocialNetworks]="availableSocialNetworks" [subscribedSocialNetworks]="subscribedSocialNetworks"
+            (addSocialMedia)="addSocialMedia($event)"
+            (removeSocialMedia)="removeSocialMedia($event)"></user-data>
         }
         @case(2){
-            <notifications></notifications>
+            <notifications #notificationsComp [notifications]="notifications"></notifications>
         }
     }
 </div>

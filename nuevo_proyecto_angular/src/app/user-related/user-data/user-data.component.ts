@@ -1,5 +1,5 @@
 import { socialNetworks } from './../../data';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NotificationsComponent } from '../notifications/notifications.component';
 
@@ -8,52 +8,50 @@ import { NotificationsComponent } from '../notifications/notifications.component
   templateUrl: './user-data.component.html',
   styleUrl: './user-data.component.css'
 })
-export class UserDataComponent implements OnInit, OnChanges {
+export class UserDataComponent implements OnInit, OnChanges, AfterViewInit {
 
   @Input() user: any = {};
   @Input() newMedia:any ={}
   activate:boolean=true
-
-  @ViewChild(NotificationsComponent) notificationsComponent!: NotificationsComponent;
-
   subscription: Subscription = new Subscription()
   socialNetworks:any[] = []
-  availableSocialNetworks:any[] = []
-  subscribedSocialNetworks:any[] = []
+  @Input() availableSocialNetworks:any[] = []
+  @Input() subscribedSocialNetworks:any[] = []
+
+  @Output() sendData = new EventEmitter<{ platform: string, message: string }>();
+  @Output() addSocialMedia = new EventEmitter<number>();
+  @Output() removeSocialMedia = new EventEmitter<number>();
 
   ngOnInit(): void {
     this.socialNetworks=Object.entries(socialNetworks);
-    this.availableSocialNetworks=this.socialNetworks
     console.log(this.socialNetworks);
-    if (this.newMedia) {
-      this.addNotification(this.newMedia.platform, this.newMedia.message);
-    }
   }
 
   ngOnChanges() {
-    if (this.newMedia) {
+    /*if (this.newMedia) {
       this.addNotification(this.newMedia.platform, this.newMedia.message);
-    }
-  }
-  public addSocialMedia(code:number){
-    let socialMedia = this.socialNetworks.find((entry:any) => entry[0] == code)
-    this.subscribedSocialNetworks.push(socialMedia)
-    this.availableSocialNetworks=this.availableSocialNetworks.filter((entry:any) => entry[0] != code)
+    }*/
   }
 
-  public removeSocialMedia(code:number){
-    let socialMedia = this.socialNetworks.find((entry:any) => entry[0] == code)
-    this.availableSocialNetworks.push(socialMedia)
-    this.subscribedSocialNetworks=this.subscribedSocialNetworks.filter((entry:any) => entry[0] != code)
+  ngAfterViewInit(): void {
+    /*if (this.newMedia) {
+      this.addNotification(this.newMedia.platform, this.newMedia.message);
+    }*/
+  }
+
+  public addSocialMediaNetwork(code:number){
+    this.addSocialMedia.emit(code);
+  }
+
+  public removeSocialMediaNetwork(code:number){
+    this.removeSocialMedia.emit(code);
   }
 
   addNotification(platform: string, message: string) {
     let subs = this.subscribedSocialNetworks.find((entry: any) => entry[1].platform == platform);
-    if( subs.length > 0){
+    if( subs){
       console.log('Notification received');
-      this.notificationsComponent.addNotification(
-        { platform: platform, type: message }
-      );
+      this.sendData.emit({ platform, message });
     }
   }
 
@@ -66,11 +64,12 @@ export class UserDataComponent implements OnInit, OnChanges {
     if(data.operation){
       console.log("add")
 
-      if((data.code != 2 && data.code != 4) || this.user[1].subscriptionType === "premium"){
+      if((data.code != 2 && data.code != 4) || (this.user[1].subscriptionType === "premium" && this.user[1].amountAvailable >= 5)){
 
-      this.addSocialMedia(data.code)}
+      this.addSocialMediaNetwork(data.code)
+      }
     } else{
-      this.removeSocialMedia(data.code)
+      this.removeSocialMediaNetwork(data.code)
     }
   }
 
