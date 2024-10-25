@@ -1,7 +1,7 @@
 import { socialNetworks } from './../data';
 import { NotificationsComponent } from '../user-related/notifications/notifications.component';
 import { UserRelatedModule } from '../user-related/user-related.module';
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'user-card',
@@ -10,7 +10,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.css'
 })
-export class UserCardComponent implements OnInit, OnChanges {
+export class UserCardComponent implements OnInit, OnChanges, AfterViewInit {
 
   @ViewChild('notificationsComp') notificationsComponent!: NotificationsComponent;
 
@@ -22,19 +22,39 @@ export class UserCardComponent implements OnInit, OnChanges {
   subscribedSocialNetworks:any[] = []
 
   notifications: { platform: string, type: string }[] = [];
+  originalAmountAvailable:number = 0
 
   ngOnInit(): void {
     this.availableSocialNetworks=Object.entries(socialNetworks);
   }
 
+  ngAfterViewInit(): void {
+    this.originalAmountAvailable = this.user[1].amountAvailable
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
+
+    let aux = 0
     console.log("Filtering")
     if (changes['newMedia'] && this.newMedia) {
       const filteredNotifications = this.newMedia.filter((notification: any) => 
         this.subscribedSocialNetworks.some((socialNetwork: any) => socialNetwork[1].platform === notification.platform)
       );
 
-      this.notifications = [...this.notifications, ...filteredNotifications];
+      filteredNotifications.forEach((notification: any) => {
+        if (notification.platform === 'whatsapp' || notification.platform === 'tiktok') {
+          aux -= 5;
+        }
+      });
+
+      if(this.originalAmountAvailable != 0){
+        this.user[1].amountAvailable = this.originalAmountAvailable+aux
+      }
+      
+      this.notifications = [...filteredNotifications]
+
+      console.log("available amount: ", this.user[1].amountAvailable)
+
       console.log("Filtered notifications:", this.notifications);
     }
   }
