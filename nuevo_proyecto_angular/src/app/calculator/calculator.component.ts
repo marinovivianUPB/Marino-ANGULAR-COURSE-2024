@@ -1,12 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'calculator',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   //templateUrl: './calculator.component.html',
   template: `
   <div class="calculator">
@@ -18,6 +18,7 @@ import { AuthService } from '../auth.service';
     <button class="mul" (click)="onAction(2)">Mul</button>
     <button class="reset" (click)="onAction(3)">Reset</button>
     <button (click)="onLogin()">LOGIN</button>
+    <button [routerLink]="'../student/'">GO TO STUDENT</button>
   </div>
   <p>box1Value: {{ box1Value }}</p>
   <p>box2Value: {{ box2Value }}</p>
@@ -31,7 +32,7 @@ export class CalculatorComponent implements OnInit{
 
   @Output() response = new EventEmitter()
 
-  constructor (private _activatedRoute: ActivatedRoute, private _authService: AuthService) { }
+  constructor (private _activatedRoute: ActivatedRoute, private _authService: AuthService, private _router: Router) { }
 
   ngOnInit(): void {
     this._activatedRoute.queryParams.subscribe((params) => {
@@ -41,6 +42,7 @@ export class CalculatorComponent implements OnInit{
 
   onLogin(){
     this._authService.login()
+    this._router.navigate(['student'])
   }
 
   public onAction(action:number){
