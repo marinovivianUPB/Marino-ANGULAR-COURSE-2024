@@ -3,6 +3,7 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { CounterComponent } from './counter/counter.component';
 import { AuthGuard } from './guards/auth.guard';
+import { GuardForm } from './guards/guard-form.guard';
 
 export const routes: Routes = [
     {
@@ -12,6 +13,7 @@ export const routes: Routes = [
     },
     {
         path: "calc",
+        canDeactivate: [GuardForm],
         component: CalculatorComponent
     },
     {
@@ -21,7 +23,7 @@ export const routes: Routes = [
     ,
     {
         path: "student",
-        canActivate: [AuthGuard],
+        //canActivate: [AuthGuard],
         loadChildren: () => import('./student/student.module').then(c => c.StudentModule)
     }
 ];
