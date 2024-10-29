@@ -10,7 +10,7 @@ export class GuardChild implements CanActivateChild {
 
     console.log("ACTIVATED ROUTE: ", childRoute)
     console.log("STATE: ", state)
-    return false;
+    return true;
   }
 
 }
