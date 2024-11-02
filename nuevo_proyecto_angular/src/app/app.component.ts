@@ -16,6 +16,7 @@ import {ChangeDetectionStrategy} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { StudentService } from './services/student.service';
 
 interface IPerson{
   name:string,
@@ -82,7 +83,11 @@ export class AppComponent {
   studentForm !: FormGroup;
   studentForm2 !: UntypedFormGroup;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private untypedFormBuilder: UntypedFormBuilder){
+  constructor(private router: Router, private formBuilder: FormBuilder, private untypedFormBuilder: UntypedFormBuilder, private _studentService: StudentService){
+
+    this._studentService.getStudents().subscribe((res) => {
+      console.log('STUDENTS JSON: ', res)
+    });
 
     const {name, age} = this.person
     console.log("DESESTRUCTURACION: ", name,age)
