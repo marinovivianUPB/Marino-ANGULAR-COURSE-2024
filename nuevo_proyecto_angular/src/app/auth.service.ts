@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
 
-  private token:string = ''
+  private token!:string|null
   private user: string = ''
 
   constructor() { }
@@ -15,6 +15,7 @@ export class AuthService {
   {
     this.token='123ABC'
     this.user='test@gmail.com'
+    localStorage.setItem('token', this.token)
     return this.token
   }
 
@@ -22,10 +23,13 @@ export class AuthService {
   {
     this.token=''
     this.user=''
+    localStorage.removeItem('token')
   }
 
   public getToken()
   {
+    const token=localStorage.getItem('token')
+    this.token=token??''
     return this.token
   }
 
