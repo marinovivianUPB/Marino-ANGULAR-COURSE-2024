@@ -6,7 +6,7 @@
 <button (click)="selectedUser=users[0]">change to user 0</button>
 <button (click)="selectedUser=users[1]">change to user 1</button>-->
 
-@if(userCardCreated){
+<!--@if(userCardCreated){
 <user-card
   [name]="selectedUser.name"
   [email]="selectedUser.email"
@@ -44,7 +44,7 @@
 <button (click)="students.push(10)">add new number</button>
 <button (click)="addNumber()">add new number</button>
 
-<!-- <p>RESULT: {{ result }}</p>
+ <p>RESULT: {{ result }}</p>
 <div class="container">
   <div class="column">
     <calculator (response)="onResult($event)"></calculator>
@@ -100,7 +100,7 @@
 <counter></counter>
 
 <button (click)="var1=var1+1">Increment var1</button>
-<p>{{var1}}</p>-->
+<p>{{var1}}</p>
 
 <mat-card class="example-card" appearance="outlined">
   <mat-card-header>
@@ -163,9 +163,9 @@
   </mat-card-actions>
 </mat-card>
 
-<!--<h1 class="text-3xl font-bold underline text-red-900">
+<h1 class="text-3xl font-bold underline text-red-900">
   Hello world!
-</h1>-->
+</h1>
 
 <div class="mb-3">
   <label for="formGroupExampleInput" class="form-label">Example label</label>
@@ -197,11 +197,11 @@
 <button type="button" class="btn btn-warning" [routerLink]="'/student'">Student</button>
 <button type="button" class="btn btn-warning" [routerLink]="'/student/classmate'">Classmate</button>
 <button type="button" class="btn btn-warning" [routerLink]="'/student/average'">Average</button>
-<button type="button" class="btn btn-warning" (click)="goToStudent()">OTHER STUDENT FROM TS</button>
+<button type="button" class="btn btn-warning" (click)="goToStudent()">OTHER STUDENT FROM TS</button>-->
 
 
 
-<div style="border: 4cqmax solid yellowgreen ">
+<div class="container">
 
 <router-outlet>
   

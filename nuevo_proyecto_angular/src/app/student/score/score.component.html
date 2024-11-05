@@ -1,4 +1,4 @@
-<p>score works!</p>
+<!--<p>score works!</p>
 
 <button [routerLink]="'./average'">AVERAGE</button>
 <button [routerLink]="'../calc'">calc</button>
@@ -7,4 +7,35 @@
     <router-outlet></router-outlet>
 </div>
 
-<classmate></classmate>
+<classmate></classmate>-->
+
+<div *ngIf="students && students.length > 0; else noData" class="container mt-4">
+    <div class="row">
+      <div class="col-md-6 mb-4" *ngFor="let student of students">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ student.firstName }} {{ student.lastName }}</h5>
+            <p class="card-text">
+              <strong>Email:</strong> {{ student.email }}<br>
+              <strong>Age:</strong> {{ student.age }}<br>
+              <strong>Gender:</strong> {{ student.gender }}<br>
+              <strong>Major:</strong> {{ student.major }}<br>
+              <strong>GPA:</strong> {{ student.gpa }}<br>
+              <strong>Graduation Year:</strong> {{ student.graduationYear }}<br>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noData>
+    <div class="text-center mt-4">
+      <p class="text-muted">No students available</p>
+    </div>
+  </ng-template>
+  
+  <div class="text-center mt-4">
+    <button type="button" class="btn btn-warning" (click)="onLogout()">Logout</button>
+  </div>
+  

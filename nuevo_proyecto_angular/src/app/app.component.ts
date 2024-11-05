@@ -17,6 +17,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { StudentService } from './services/student.service';
+import { AuthService } from './auth.service';
+import { LoginComponent } from './login/login.component';
 
 interface IPerson{
   name:string,
@@ -36,7 +38,7 @@ interface IForm{
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, UserCardComponent, CalculatorComponent, HistoryComponent, CommonModule, PersonComponent, CounterComponent, AppColorsDirective, CreateHtmlDirective
-    ,PurePipe, ImpurePipe, MatButtonModule, MatCardModule, RouterLink, FormsModule, ReactiveFormsModule
+    ,PurePipe, ImpurePipe, MatButtonModule, MatCardModule, RouterLink, FormsModule, ReactiveFormsModule, LoginComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -83,7 +85,7 @@ export class AppComponent {
   studentForm !: FormGroup;
   studentForm2 !: UntypedFormGroup;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private untypedFormBuilder: UntypedFormBuilder, private _studentService: StudentService){
+  constructor(private _authService: AuthService, private router: Router, private formBuilder: FormBuilder, private untypedFormBuilder: UntypedFormBuilder, private _studentService: StudentService){
 
     this._studentService.getStudents().subscribe((res) => {
       console.log('STUDENTS JSON: ', res)
@@ -149,6 +151,11 @@ export class AppComponent {
         console.log('FORM VALUE OBSERVABLE: ', res)
       }
     )
+  }
+
+  public onLogin(){
+    this._authService.login()
+    this.goToStudent()
   }
 
   public addNumber(){
