@@ -27,7 +27,7 @@ export class CityformComponent {
   addCity() {
     let formObject = this.cityForm.value
 
-    const existingCity = this.cities.find((city: any) => city.name === formObject.name)
+    const existingCity = this.cities.find((city: any) => city.name.toLowerCase() === formObject.name.toLowerCase());
 
     if (existingCity) {
       console.log("City with this name already exists.");
